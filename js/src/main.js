@@ -4,26 +4,26 @@ $(document).ready(function () {
     $(this).hide().parent().find('.list li.more').fadeIn();
   });
 
-var headerHeight = $('.main-nav__header').height();
+  var headerHeight = $('.main-nav__header').height();
 
-$('.main-nav__list a, .promo a.btn').on('click', function (evt) {
-    evt.preventDefault();
+  $('.main-nav__list a:not(.away), .promo a.btn').on('click', function (evt) {
+      evt.preventDefault();
 
-    var coord = $($.attr(this, 'href')).offset().top;
+      var coord = $($.attr(this, 'href')).offset().top;
 
-    if ($(window).width() < 1201) {
-      coord -= headerHeight;
-    }
+      if ($(window).width() < 1201) {
+        coord -= headerHeight;
+      }
 
-    $('html, body').animate({
-        scrollTop: coord
-    }, 500);
-});
+      $('html, body').animate({
+          scrollTop: coord
+      }, 500);
+  });
 
-var navMain = $("#navbar");
-navMain.on("click", "a", null, function () {
-  navMain.collapse('hide');
-});
+  var navMain = $("#navbar");
+  navMain.on("click", "a", null, function () {
+    navMain.collapse('hide');
+  });
 
   $(".phone-input").mask("+7 (999) 999-99-99");
 
@@ -44,6 +44,13 @@ navMain.on("click", "a", null, function () {
     t = $(this).find(".phone-input");
 
     if ("" == o.val() ? (o.addClass("fill-error"), o.attr("placeholder", "*Заполните поле"), e = !0) : i.test(o.val()) ? (o.addClass("fill-error"), o.attr("placeholder", "Неверный формат имени"), o.val(""), e = !0) : (o.removeClass("fill-error"), o.attr("placeholder", "Ваше имя")), "" == t.val() ? (t.addClass("fill-error"), t.attr("placeholder", "*Заполните поле"), e = !0) : (t.removeClass("fill-error"), t.attr("placeholder", "Ваш телефон")), e) return !1
+  });
+
+  $('.docs__anchors button').on('click', function () {
+    $('.docs__anchors button').removeClass('active');
+    $(this).addClass('active');
+    $('.docs__item').hide();
+    $('#' + $(this).data('for')).show();
   });
 
 });
